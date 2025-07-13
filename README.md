@@ -40,7 +40,7 @@ Thynk is designed for use in research, legal, educational, and any high-integrit
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/<your-username>/Thynk.git
+git clone https://github.com/Ashay1111/Thynk.git
 cd Thynk
 ````
 
@@ -87,17 +87,18 @@ Visit in browser:
 ```
 Thynk/
 ├── scripts/
+│   ├── uploads/              # Folder to store uploaded PDFs
+│   ├── .env                  # API key (ignored by Git)
 │   ├── app.py                # FastAPI backend + endpoints
 │   ├── indexing.py           # Loads, chunks, and embeds documents
 │   ├── retrieval.py          # FAISS retrieval logic
 │   ├── generation.py         # Answer generation via Gemini
 │   ├── query_expansion.py    # Expands queries using LLM
 │   ├── config.py             # Configuration and API key loading
+│   ├── ui_interface.html     # Frontend interface
+│   ├── main.py
 │   └── __init__.py
-├── ui_interface.html         # Frontend interface
-├── uploads/                  # Folder to store uploaded PDFs
-├── data/                     # FAISS index storage
-├── .env                      # API key (ignored by Git)
+├── sample_research_papers
 ├── .gitignore
 ├── README.md
 └── requirements.txt

@@ -1,0 +1,13 @@
+# .gitignore
+Text_database/
+__pycache__/
+data/
+google-cloud-sdk
+# Files
+.env
+*.pyc
+*.json
+*.txt
+.DS_Store
+.venv
+books
