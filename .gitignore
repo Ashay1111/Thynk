@@ -2,6 +2,7 @@
 Text_database/
 __pycache__/
 data/
+uploads
 google-cloud-sdk
 # Files
 .env
