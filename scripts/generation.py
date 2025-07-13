@@ -1,7 +1,7 @@
 from langchain_google_genai import ChatGoogleGenerativeAI
-from retrieval import retrieve_chunks, get_retriever, retrieve_multiple_queries
-from config import gemini_api_key
-from query_expansion import expand_query
+from .retrieval import retrieve_chunks, get_retriever, retrieve_multiple_queries
+from .config import gemini_api_key
+from .query_expansion import expand_query
 from typing import List, Dict, Optional, Tuple
 from langchain_core.documents import Document
 import time

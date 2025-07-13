@@ -3,7 +3,7 @@ from langchain.document_loaders import PyMuPDFLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.vectorstores import FAISS
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
-from config import FAISS_INDEX_PATH
+from .config import FAISS_INDEX_PATH
 
 def load_files(file_paths: list[str]) -> list:
     docs = []
@@ -55,6 +55,6 @@ def index_documents(file_paths, chunk_size=800, chunk_overlap=150):
     if not chunks:
         raise ValueError("Chunking resulted in zero chunks. Check document content.")
 
-    print("🔐 Embedding and indexing...")
+    print("Embedding and indexing...")
     embed_documents(chunks)
     print("Indexing complete.")

@@ -10,4 +10,3 @@ google-cloud-sdk
 *.txt
 .DS_Store
 .venv
-books

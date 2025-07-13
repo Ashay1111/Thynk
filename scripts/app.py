@@ -16,11 +16,11 @@ load_dotenv()
 
 # Import modules - fixed import paths
 try:
-    from config import gemini_api_key, google_api_key
-    from generation import generate_answer
-    from retrieval import get_retriever
-    from indexing import index_documents
-    from query_expansion import expand_query
+    from .config import gemini_api_key, google_api_key
+    from .generation import generate_answer
+    from .retrieval import get_retriever
+    from .indexing import index_documents
+    from .query_expansion import expand_query
 except ImportError as e:
     print(f"Import error: {e}")
     print("Make sure all required modules are in the same directory")
@@ -177,8 +177,8 @@ async def handle_query(req: QueryRequest):
             # Update the existing retriever's k value
             CURRENT_RETRIEVER.search_kwargs = {"k": req.k}
         
-        print(f"🔍 Query: {req.query}")
-        print(f"🔧 Parameters: expand={req.expand_query}, k={req.k}")
+        print(f"Query: {req.query}")
+        print(f"Parameters: expand={req.expand_query}, k={req.k}")
         
         # Generate answer with user parameters
         answer, expanded_queries = generate_answer(

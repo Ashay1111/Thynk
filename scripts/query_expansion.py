@@ -1,5 +1,5 @@
 from langchain_google_genai import ChatGoogleGenerativeAI
-from config import gemini_api_key
+from .config import gemini_api_key
 
 
 def expand_query(original_query: str, model_name: str = "gemini-2.0-flash", num_queries: int = 5) -> list[str]:
