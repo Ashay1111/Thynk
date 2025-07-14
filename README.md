@@ -11,6 +11,11 @@ Thynk is designed for use in research, legal, educational, and any high-integrit
 
 ---
 
+## Demo
+Visit: https://youtu.be/Mj1kb84chT8
+
+---
+
 ## Features
 
 - Upload custom documents (PDFs)
