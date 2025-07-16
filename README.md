@@ -12,7 +12,7 @@ Thynk is designed for use in research, legal, educational, and any high-integrit
 ---
 
 ## Demo
-Visit: <soon>
+Visit: https://youtu.be/_KfDKFrqXWc
 
 ---
 
