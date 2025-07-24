@@ -1,4 +1,4 @@
-const API_BASE = 'http://localhost:8000'
+const API_BASE = ''
 const selectedDocuments = new Set()
 let currentIndexParameters = { chunk_size: 800, chunk_overlap: 150 }
 let documentsNeedReindexing = false
