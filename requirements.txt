@@ -9,4 +9,4 @@ faiss-cpu==1.7.4
 PyMuPDF==1.23.14
 python-dotenv==1.0.0
 requests==2.31.0
-aiofiles==0.24.0
+aiofiles==23.2.1
