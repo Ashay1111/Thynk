@@ -4,7 +4,7 @@ python-multipart==0.0.6
 langchain==0.1.0
 langchain-google-genai==1.0.1
 langchain-community==0.0.10
-google-generativeai==0.3.2
+google-generativeai>=0.4.1,<0.5.0
 faiss-cpu==1.7.4
 PyMuPDF==1.23.14
 python-dotenv==1.0.0
