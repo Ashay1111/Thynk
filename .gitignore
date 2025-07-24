@@ -1,13 +1,13 @@
-# .gitignore
-Text_database/
+# Directories
 __pycache__/
 data/
 uploads/
+.venv/
 google-cloud-sdk/
+Text_database/
+
 # Files
 .env
 *.pyc
 *.json
-*.txt
 .DS_Store
-.venv
