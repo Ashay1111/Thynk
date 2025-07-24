@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thynk - Interactive Knowledge Base</title>
+
+  <!-- Link to your separated CSS file -->
+  <link rel="stylesheet" href="/static/style.css" />
+
+  <!-- External libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.3.0/marked.min.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Thynk🧠</h1>
+      <p>Interactive Knowledge Base</p>
+    </div>
+
+    <!-- Document Upload Section -->
+    <div class="card">
+      <h2>Document Management</h2>
+      <div class="upload-area" id="uploadArea">
+        <div class="upload-icon">📄</div>
+        <p>
+          <strong>Click to upload</strong> or drag and drop PDF files here
+        </p>
+        <input type="file" id="fileInput" accept=".pdf" multiple />
+      </div>
+      <div id="documentList" class="document-list"></div>
+    </div>
+
+    <!-- Indexing Section -->
+    <div class="card">
+      <h2>Document Indexing</h2>
+      <div class="parameter-info">
+        <strong>Note:</strong> Changing chunk parameters will require
+        re-indexing your documents. Higher chunk size preserves more context
+        but may reduce precision. Overlap helps maintain continuity between
+        chunks.
+      </div>
+      <div class="controls">
+        <div class="control-group tooltip">
+          <label for="chunkSize">Chunk Size:</label>
+          <input type="number" id="chunkSize" value="800" min="100" max="2000" step="50" />
+          <span class="tooltiptext">Size of each text chunk. Larger chunks preserve more context but
+            may reduce retrieval precision.</span>
+        </div>
+        <div class="control-group tooltip">
+          <label for="chunkOverlap">Chunk Overlap:</label>
+          <input type="number" id="chunkOverlap" value="150" min="0" max="500" step="25" />
+          <span class="tooltiptext">Number of characters that overlap between adjacent chunks. Helps
+            maintain context continuity.</span>
+        </div>
+        <button class="btn" id="startIndexingBtn" onclick="startIndexing()">
+          Start Indexing
+        </button>
+      </div>
+    </div>
+
+    <!-- Query Section -->
+    <div class="card">
+      <h2>Ask Questions</h2>
+      <div class="parameter-info">
+        <strong>Query Settings:</strong> Enable query expansion to generate
+        multiple variations of your question for better retrieval. Increase
+        k-value to retrieve more documents for broader context.
+      </div>
+      <div class="query-section">
+        <textarea class="query-input" id="queryInput"
+          placeholder="Ask a question about your uploaded documents..."></textarea>
+        <div class="query-controls">
+          <div class="control-group tooltip">
+            <label for="expandQuery">
+              <input type="checkbox" id="expandQuery" checked />
+              Expand Query
+            </label>
+            <span class="tooltiptext">Generate multiple variations of your question to improve
+              retrieval accuracy.</span>
+          </div>
+          <div class="control-group tooltip">
+            <label for="kValue">Results (k):</label>
+            <input type="number" id="kValue" value="5" min="1" max="20" />
+            <span class="tooltiptext">Number of document chunks to retrieve. More chunks provide
+              broader context but may introduce noise.</span>
+          </div>
+          <button class="btn" id="submitQueryBtn" onclick="submitQuery()">
+            Submit Query
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Results Section -->
+    <div class="card" id="queryResults" style="display: none">
+      <h2>Results</h2>
+      <div id="resultsContent"></div>
+    </div>
+  </div>
+
+  <!-- Link to your separated JavaScript file -->
+  <script src="/static/scripts.js"></script>
+</body>
+
+</html>

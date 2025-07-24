@@ -14,24 +14,26 @@ from dotenv import load_dotenv
 # Load environment variables
 load_dotenv()
 
-# Import modules - fixed import paths
+# Import your modules - using absolute imports
 try:
-    from .config import gemini_api_key, google_api_key
-    from .generation import generate_answer
-    from .retrieval import get_retriever
-    from .indexing import index_documents
-    from .query_expansion import expand_query
+    from scripts.config import gemini_api_key, google_api_key
+    from scripts.generation import generate_answer
+    from scripts.retrieval import get_retriever
+    from scripts.indexing import index_documents
+    from scripts.query_expansion import expand_query
 except ImportError as e:
     print(f"Import error: {e}")
-    print("Make sure all required modules are in the same directory")
+    print("Make sure all required modules are in the scripts directory")
     raise
 
 # psyRAG - A Retrieval-Augmented Generation (RAG) system for psychology research
 app = FastAPI(title="PsyRAG", description="Psychology RAG System")
 
 # Setup directories
-BASE_DIR = Path(__file__).parent
+BASE_DIR = Path(__file__).parent  # This is the scripts/ directory
 UPLOAD_DIR = BASE_DIR / "uploads"
+FRONTEND_DIR = BASE_DIR.parent / "frontend"  # This correctly points to ../frontend/
+
 UPLOAD_DIR.mkdir(exist_ok=True)
 
 # Enable CORS
@@ -43,8 +45,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Mount static files
-app.mount("/static", StaticFiles(directory=BASE_DIR), name="static")
+# Mount static files from frontend directory
+app.mount("/static", StaticFiles(directory=FRONTEND_DIR), name="static")
 
 # In-memory stores
 DOCUMENTS = {}
@@ -64,9 +66,9 @@ class QueryRequest(BaseModel):
 
 @app.get("/", response_class=HTMLResponse)
 async def serve_ui():
-    """Serves the main UI page"""
+    """Serves the main UI page from frontend folder"""
     try:
-        return FileResponse(BASE_DIR / "ui_interface.html")
+        return FileResponse(FRONTEND_DIR / "index.html")
     except Exception as e:
         return HTMLResponse(f"<h1>Error loading UI: {str(e)}</h1>", status_code=500)
 
@@ -238,4 +240,4 @@ async def internal_error_handler(request: Request, exc: HTTPException):
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("app:app", host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run("scripts.server:app", host="0.0.0.0", port=8000, reload=True)

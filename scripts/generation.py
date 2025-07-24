@@ -1,5 +1,5 @@
 from langchain_google_genai import ChatGoogleGenerativeAI
-from .retrieval import retrieve_chunks, get_retriever, retrieve_multiple_queries
+from .retrieval import retrieve_multiple_queries, get_retriever
 from .config import gemini_api_key
 from .query_expansion import expand_query
 from typing import List, Dict, Optional, Tuple
@@ -74,8 +74,8 @@ def generate_answer(
             all_queries = [query] + expanded_queries
             docs = retrieve_multiple_queries(all_queries, retriever)
         else:
-            # Use only original query - ensure k parameter is respected
-            docs = retriever.get_relevant_documents(query)
+            # Use only original query - use invoke instead of get_relevant_documents
+            docs = retriever.invoke(query)
         
         update_progress("retrieval", 60, f"Retrieved {len(docs)} documents")
         
@@ -125,24 +125,3 @@ Answer (detailed and grounded in the context):
         return answer, expanded_queries
     else:
         return answer
-
-# Enhanced version for CLI use
-def generate_answer_cli(query, retriever=None, expand=True, verbose=True):
-    """CLI version with built-in progress display"""
-    def print_progress(stage, progress, message, details=None):
-        if verbose:
-            print(f"[{progress:3.0f}%] {stage.upper()}: {message}")
-            if details and 'expanded_queries' in details:
-                for i, q in enumerate(details['expanded_queries'], 1):
-                    print(f"  {i}. {q}")
-    
-    return generate_answer(query, retriever, expand, False, 5, print_progress)
-
-# Optional: direct CLI test
-if __name__ == "__main__":
-    user_query = input("Ask your question: ")
-    answer = generate_answer_cli(user_query)
-    print("\n" + "="*50)
-    print("PsyRAG ANSWER:")
-    print("="*50)
-    print(answer)

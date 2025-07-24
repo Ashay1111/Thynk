@@ -1,7 +1,7 @@
 import os
 from langchain.vectorstores import FAISS
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
-from .config import gemini_api_key, google_api_key, FAISS_INDEX_PATH
+from .config import gemini_api_key, FAISS_INDEX_PATH
 import concurrent.futures
 
 # === Setup ===
@@ -68,20 +68,3 @@ def retrieve_chunks(query: str, k: int = 5, index_path=None):
         return docs
     except Exception as e:
         raise RuntimeError(f"Failed to retrieve chunks: {str(e)}")
-
-# Test the retrieval
-if __name__ == "__main__":
-    try:
-        query = input("Enter your query: ")
-        results = retrieve_chunks(query, k=5)
-
-        if not results:
-            print("No results found. Make sure documents are indexed.")
-        else:
-            for i, doc in enumerate(results, 1):
-                print(f"\n--- Result {i} ---")
-                print(doc.page_content[:500] + "..." if len(doc.page_content) > 500 else doc.page_content)
-                print(f"[source: {doc.metadata.get('filename', 'unknown')}]")
-    except Exception as e:
-        print(f"Error: {e}")
-        print("Make sure to run indexing first!")
