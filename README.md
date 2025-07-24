@@ -60,22 +60,32 @@ This project is currently hosted on [Railway](https://railway.app/) using the fr
 
 ```
 Thynk/
-├── scripts/
+├── frontend/                      # User interface (HTML, CSS, JS)
+│   ├── index.html
+│   ├── script.js
+│   └── style.css
+│
+├── sample_research_papers/       # Example documents for testing
+│   └── ...                       # (PDFs or other supported files)
+│
+├── scripts/                      # Backend logic for RAG pipeline
 │   ├── uploads/              # Folder to store uploaded PDFs
 │   ├── .env                  # API key (ignored by Git)
-│   ├── app.py                # FastAPI backend + endpoints
+│   ├── cli.py                # FastAPI backend + endpoints
 │   ├── indexing.py           # Loads, chunks, and embeds documents
 │   ├── retrieval.py          # FAISS retrieval logic
 │   ├── generation.py         # Answer generation via Gemini
 │   ├── query_expansion.py    # Expands queries using LLM
 │   ├── config.py             # Configuration and API key loading
-│   ├── ui_interface.html     # Frontend interface
-│   ├── main.py
+│   ├── server.py
+│   ├── core.py
 │   └── __init__.py
-├── sample_research_papers
+│
 ├── .gitignore
+├── Procfile                      # Railway deployment config
 ├── README.md
-└── requirements.txt
+├── requirements.txt              # Python dependencies
+
 ```
 
 ---
