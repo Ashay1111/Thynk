@@ -3,10 +3,10 @@ fastapi==0.115.0
 uvicorn[standard]==0.30.0
 python-multipart==0.0.9
 
-# LangChain core packages - using compatible versions
-langchain==0.3.0
-langchain-core==0.3.0
-langchain-community==0.3.0
+# LangChain core packages - using compatible versions for langchain-google-genai
+langchain==0.2.16
+langchain-core==0.2.38
+langchain-community==0.2.16
 
 # Google AI integration - compatible versions
 langchain-google-genai==1.0.10
@@ -21,9 +21,12 @@ PyMuPDF==1.26.3
 # Environment and utility packages
 python-dotenv==1.0.1
 requests==2.32.0
-aiofiles==23.2.1
+aiofiles==24.0.0
 
-# Additional required dependencies that were missing
+# Additional required dependencies
 pydantic==2.9.0
 numpy==1.26.0
 typing-extensions==4.12.0
+
+# Text splitters (moved to separate package in newer versions)
+langchain-text-splitters==0.2.4
