@@ -1,5 +1,5 @@
 import os
-from langchain.vectorstores import FAISS
+from langchain_community.vectorstores import FAISS
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from .config import gemini_api_key, FAISS_INDEX_PATH
 import concurrent.futures

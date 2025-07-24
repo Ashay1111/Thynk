@@ -1,12 +1,29 @@
-fastapi==0.104.1
-uvicorn[standard]==0.24.0
-python-multipart==0.0.6
-langchain==0.1.0
-langchain-google-genai==1.0.1
-langchain-community==0.0.10
-google-generativeai>=0.4.1,<0.5.0
-faiss-cpu==1.7.4
-PyMuPDF==1.23.14
-python-dotenv==1.0.0
-requests==2.31.0
-aiofiles==23.2.1
+# Core FastAPI and server dependencies
+fastapi==0.115.0
+uvicorn[standard]==0.30.0
+python-multipart==0.0.9
+
+# LangChain core packages - using compatible versions
+langchain==0.3.0
+langchain-core==0.3.0
+langchain-community==0.3.0
+
+# Google AI integration - compatible versions
+langchain-google-genai==1.0.10
+google-generativeai==0.7.2
+
+# Vector store and embeddings
+faiss-cpu==1.8.0
+
+# PDF processing - updated PyMuPDF
+PyMuPDF==1.26.3
+
+# Environment and utility packages
+python-dotenv==1.0.1
+requests==2.32.0
+aiofiles==24.0.0
+
+# Additional required dependencies that were missing
+pydantic==2.9.0
+numpy==1.26.0
+typing-extensions==4.12.0

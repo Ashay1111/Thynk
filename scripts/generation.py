@@ -8,7 +8,7 @@ import time
 
 # Set up the LLM
 llm = ChatGoogleGenerativeAI(
-    model="gemini-2.5-flash",
+    model="gemini-1.5-flash",
     google_api_key=gemini_api_key,
     temperature=0
 )
