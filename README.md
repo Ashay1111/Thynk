@@ -9,11 +9,6 @@
 
 Thynk is designed for use in research, legal, educational, and any high-integrity domain where reliable answers matter more than eloquent guesses.
 
----
-
-## Demo
-Visit: https://youtu.be/37_5XXa4XI4
----
 
 ## Features
 
@@ -25,6 +20,28 @@ Visit: https://youtu.be/37_5XXa4XI4
 - Modular backend split into indexing, retrieval, generation
 - Clean web interface built with FastAPI and vanilla HTML/JS
 
+---
+
+## ⚠️ Limitations
+
+### . Railway Hosting (Free Tier)
+
+This project is currently hosted on [Railway](https://railway.app/) using the free tier. Please note:
+
+- The backend sleeps after **15 minutes** of inactivity.
+- On first request after sleep, the server can take **up to 60 seconds** to wake up.
+- You might see delayed responses or errors like `500` or `404` if the server hasn't fully started. Simply **refresh after a few seconds**.
+
+
+## If you're a recruiter or interested in using or extending this project, feel free to reach out:
+
+-  **Email**: `ashayjpatel@gmail.com`
+- [LinkedIn](https://linkedin.com/in/ashayjpatel)
+  
+---
+### **Live Demo** : [Visit the Website](https://thynk-production.up.railway.app/)
+
+### **Watch the Walkthrough**: [YouTube Demo](https://youtu.be/37_5XXa4XI4)
 ---
 
 ## Tech Stack
@@ -39,73 +56,36 @@ Visit: https://youtu.be/37_5XXa4XI4
 
 ---
 
-## Getting Started
-
-### 1. Clone the repository
-
-```bash
-git clone https://github.com/Ashay1111/Thynk.git
-cd Thynk
-````
-
-### 2. Create and activate a virtual environment
-
-```bash
-python -m venv .venv
-source .venv/bin/activate
-```
-
-### 3. Install dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-### 4. Set up your environment
-
-Create a `.env` file in the root directory:
-
-```bash
-touch .env
-```
-
-Add your Gemini API key:
-
-```
-GEMINI_API_KEY=your_api_key_here
-```
-
-### 5. Run the app
-
-```bash
-uvicorn scripts.app:app --reload
-```
-
-Visit in browser:
-[http://localhost:8000](http://localhost:8000)
-
----
-
 ## Project Structure
 
 ```
 Thynk/
-├── scripts/
+├── frontend/                      # User interface (HTML, CSS, JS)
+│   ├── index.html
+│   ├── script.js
+│   └── style.css
+│
+├── sample_research_papers/       # Example documents for testing
+│   └── ...                       # (PDFs or other supported files)
+│
+├── scripts/                      # Backend logic for RAG pipeline
 │   ├── uploads/              # Folder to store uploaded PDFs
 │   ├── .env                  # API key (ignored by Git)
-│   ├── app.py                # FastAPI backend + endpoints
+│   ├── cli.py                # FastAPI backend + endpoints
 │   ├── indexing.py           # Loads, chunks, and embeds documents
 │   ├── retrieval.py          # FAISS retrieval logic
 │   ├── generation.py         # Answer generation via Gemini
 │   ├── query_expansion.py    # Expands queries using LLM
 │   ├── config.py             # Configuration and API key loading
-│   ├── ui_interface.html     # Frontend interface
-│   ├── main.py
+│   ├── server.py
+│   ├── core.py
 │   └── __init__.py
-├── sample_research_papers
+│
 ├── .gitignore
+├── Procfile                      # Railway deployment config
 ├── README.md
-└── requirements.txt
+├── requirements.txt              # Python dependencies
+
 ```
 
 ---
@@ -118,9 +98,11 @@ Thynk prioritizes **grounded responses** over speculative completions. If the so
 
 ## Future Directions
 
-* Chunk-level re-ranking using Gemini
-* Multi-query refinement chains
-* Support for non-PDF sources (Markdown, HTML, JSONL)
+* Pinecone integration for scalable, production-grade vector storage
+* Neural re-ranking of retrieved chunks using Gemini for smarter retrieval
 * Authenticated multi-user mode with persistent upload history
+* Multi-query refinement chains for enhanced answer quality
+* Support for non-PDF sources (Markdown, HTML, JSONL)
+* Interactive React frontend to visualize retrieval + re-ranking flow
 
 ---
